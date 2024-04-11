@@ -1,4 +1,4 @@
-"This respositiry contains data and workflow for COMODO paper: "Title and authors"
+"This respositiry contains data and workflow for COMODO paper: "COMODO: Configurable Morphology Distance Operator, P. Desai, N. Juneja, J. Zola, V. Chandola, O. Wodo"
 
 To execute the workflow run python workflow.py
 
