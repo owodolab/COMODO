@@ -1,5 +1,5 @@
 import numpy as np
-#from morphSimilarity_png import comodo
+#from morphSimilarity_png import compute_distance
 import numpy as np
 import matplotlib.pyplot as plt
 import math 
@@ -21,7 +21,7 @@ from scipy.integrate import simps
 from numpy import trapz
 import time
 
-from morphSimilarity import comodo
+from morphSimilarity import compute_distance
 
 def NormalizeData(data):
     return (data - np.min(data)) / (np.max(data) - np.min(data))
@@ -31,54 +31,22 @@ def NormalizeData(data):
 
 
 
-################20 replicas###########
-DistanceTFSurfacetoVolumeExpanded = np.array(comodo(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\Expanded Data\TFexpandeddata'))#, signature_function='shape_ratio_sig' , visualize_graphs=False))
-DistanceMASSurfacetoVolumeExpanded = np.array(comodo(r"C:/Users/parth/Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\Expanded Data\MASexpandeddata"))#, signature_function='shape_ratio_sig' , visualize_graphs=False))
-DistanceEASSurfacetoVolumeExpanded = np.array(comodo(r"C:/Users/parth/Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\Expanded Data\EASexpandeddata"))#, signature_function='shape_ratio_sig' , visualize_graphs=False))
-
-
-
-DistanceTFAspectRatioExpanded = np.array(comodo(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\Expanded Data\TFexpandeddata', signature_function='shape_ratio_sig' , visualize_graphs=False))
-DistanceMASAspectRatioExpanded = np.array(comodo(r"C:/Users/parth/Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\\Expanded Data\MASexpandeddata", signature_function='shape_ratio_sig' , visualize_graphs=False))
-DistanceEASAspectRatioExpanded = np.array(comodo(r"C:/Users/parth/Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\Expanded Data\EASexpandeddata", signature_function='shape_ratio_sig' , visualize_graphs=False))
-
-
-
-
-
 ############100replicas(400 total)######################
 
 
 
-DistanceMASstv100replicasE = np.array(comodo(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\100 replicas\MAS'))
-DistanceEASstv100replicasE = np.array(comodo(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\100 replicas\EAS'))
+DistanceMASstv100replicasE = np.array(compute_distance(r'..\..\CompositeModerateAspectRatio100Replicas'))
+DistanceEASstv100replicasE = np.array(compute_distance(r'..\..\CompositeExtremeAspectRatio100Replicas'))
 
 
-DistanceMASAR100replicasE = np.array(comodo(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\100 replicas\MAS',signature_function='shape_ratio_sig'))
-DistanceEASAR100replicasE = np.array(comodo(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\100 replicas\EAS',signature_function='shape_ratio_sig'))
+DistanceMASAR100replicasE = np.array(compute_distance(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\100 replicas\MAS',signature_function='shape_ratio_sig'))
+DistanceEASAR100replicasE = np.array(compute_distance(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\100 replicas\EAS',signature_function='shape_ratio_sig'))
 
-
-############200replicas(800 total)######################
-
-
-
-DistanceMASAR200replicasE =np.array(comodo(r"C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\200replicas\MAS", signature_function='shape_ratio_sig' , visualize_graphs=False))
-DistanceEASAR200replicasE =np.array(comodo(r"C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\200replicas\EAS", signature_function='shape_ratio_sig' , visualize_graphs=False))
-
-
-
-DistanceMASstv200replicasE = np.array(comodo(r"C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\200replicas\MAS"))
-DistanceEASstv200replicasE = np.array(comodo(r"C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\200replicas\EAS"))
 
 
 ##########1000Replicas
-DistanceMASSV1000replicasE =np.array(comodo(r"C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\1000replicas\MAS"))
 
-DistanceMASAR1000replicasE =np.array(comodo(r"C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\1000replicas\MAS",signature_function='shape_ratio_sig'))
-
-
-DistanceMASAR1000replicasE =np.array(comodo(r"C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\1000replicas\MAS",signature_function='shape_ratio_sig'))
-
+DistanceMASAR1000replicasE =np.array(compute_distance(r"..\..\CompositeModerateAspectRatio100Replicas",signature_function='shape_ratio_sig'))
 
 
 
@@ -88,9 +56,7 @@ DistanceMASAR1000replicasE =np.array(comodo(r"C:\Users\parth\Desktop\Microstruct
 from scipy.io import savemat
 
 
-
-
-Distance=distmat
+Distance=DistanceMASstv100replicasE
 
 fig = plt.figure()
 fig.patch.set_facecolor('white')
@@ -114,16 +80,6 @@ plt.ylabel('MDS Dimension 2')
 
 
 
-NorTFVSExpanded =  NormalizeData(DistanceTFSurfacetoVolumeExpanded)
-NorMASVSExpanded=  NormalizeData(DistanceMASSurfacetoVolumeExpanded)
-NorEASVSExpanded=  NormalizeData(DistanceEASSurfacetoVolumeExpanded)
-
-ASNorTFExpanded=  NormalizeData(DistanceTFAspectRatioExpanded)
-ASNorMASExpanded=  NormalizeData(DistanceMASAspectRatioExpanded)
-ASNorEASExpanded=  NormalizeData(DistanceEASAspectRatioExpanded)
-
-
-
 
 NorMASVS100replicas= NormalizeData(DistanceMASstv100replicasE)
 NorEASVS100replicas=  NormalizeData(DistanceEASstv100replicasE)
@@ -132,15 +88,6 @@ ASNorMAS100replicas=  NormalizeData(DistanceMASAR100replicasE)
 ASNorEAS100replicas=  NormalizeData(DistanceEASAR100replicasE)
 
 
-
-
-
-
-NorMASVS200replicas=  NormalizeData(DistanceMASstv200replicasE)
-NorEASVS200replicas=  NormalizeData(DistanceEASstv200replicasE)
-
-ASNorMAS200replicas=  NormalizeData(DistanceMASAR200replicasE)
-ASNorEAS200replicas=  NormalizeData(DistanceEASAR200replicasE)
 
 
 
