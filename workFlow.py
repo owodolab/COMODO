@@ -21,7 +21,7 @@ from scipy.integrate import simps
 from numpy import trapz
 import time
 
-from morphSimilarity import compute_distance
+from comodo import compute_distance
 
 def NormalizeData(data):
     return (data - np.min(data)) / (np.max(data) - np.min(data))
@@ -35,19 +35,18 @@ def NormalizeData(data):
 
 
 
-DistanceMASstv100replicasE = np.array(compute_distance(r'..\..\CompositeModerateAspectRatio100Replicas'))
-DistanceEASstv100replicasE = np.array(compute_distance(r'..\..\CompositeExtremeAspectRatio100Replicas'))
+DistanceMASstv100replicasE = np.array(compute_distance(r'..\data\CompositeModerateAspectRatio100Replicas'))
+DistanceEASstv100replicasE = np.array(compute_distance(r'..\data\CompositeExtremeAspectRatio100Replicas'))
 
 
-DistanceMASAR100replicasE = np.array(compute_distance(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\100 replicas\MAS',signature_function='shape_ratio_sig'))
-DistanceEASAR100replicasE = np.array(compute_distance(r'C:\Users\parth\Desktop\MicrostructureDataGeneration\data2share\data2share\Composites\Data\100 replicas\EAS',signature_function='shape_ratio_sig'))
+DistanceMASAR100replicasE = np.array(compute_distance(r'..\data\CompositeModerateAspectRatio100Replicas',signature_function='shape_ratio_sig'))
+DistanceEASAR100replicasE = np.array(compute_distance(r'..\data\CompositeExtremeAspectRatio100Replicas',signature_function='shape_ratio_sig'))
 
 
 
 ##########1000Replicas
 
-DistanceMASAR1000replicasE =np.array(compute_distance(r"..\..\CompositeModerateAspectRatio100Replicas",signature_function='shape_ratio_sig'))
-
+DistanceMASAR1000replicasE =np.array(compute_distance(r"..\data\CompositeModerateAspectRatio100Replicas",signature_function='shape_ratio_sig'))
 
 
 ###########################MDS######################################
@@ -108,22 +107,9 @@ easexpandedlabels=np.loadtxt('EASLABELSEXPANDED.txt')
 tfmasexplabels100replicas=np.loadtxt('TFMASLABELS100replicas.txt')
 clusters4100replicas=np.loadtxt('100replicas4cluster.txt')
 easexpandedlabels100replicas=np.loadtxt('EASLABELS100replicas.txt')
-
-tfmasexplabels200replicas=np.loadtxt('TFMASLABELS200replicas.txt')
-tfmasexplabels200replicas4clusters=np.loadtxt('MAS200replicas4clusterslabels.txt')
-
-easexpandedlabels200replicas=np.loadtxt('EASLABELS200replicas.txt')
-
-tfnewdata200replicaslables=np.loadtxt('TFnewdata200replicas.txt')
-SDL=np.loadtxt('SDlables.txt')
 data1000cluster4=np.loadtxt('labels1000pts4cluster.txt')
-data500cluster4=np.loadtxt('500replicaslabels.txt')
-data700cluster4=('700replicaslabels.txt')
 data400cluster4=np.loadtxt('400replicaslabels.txt')
-data225cluster4=np.loadtxt('225replicaslabels.txt')
-data275cluster4=np.loadtxt('275replicaslabels.txt')
 MDlabels=np.loadtxt('MD500replicaslabels.txt')
-MAs16replicaslabels=np.loadtxt('MASlabels16replicas.txt')
 
 gofmatTFVS=np.array([])
 gofmatTFAR=np.array([])
